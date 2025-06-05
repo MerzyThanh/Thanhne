@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Card</title>
+  <style>
+    :root {
+      --primary-color: #4a90e2;
+      --secondary-color: #66bb6a;
+      --card-bg: url(caro.jpg);
+      --text-color: #333;
+      --border-radius: 15px;
+      --transition-speed: 0.4s;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Wrapper Background container */
+    .background-container {
+      /* Default gradient background */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
+      padding: 20px;
+      background: url('hoa.jpg') no-repeat center center/cover;
+      /* 
+      To change background to plain white, replace the background property above with:
+      background: #ffffff;
+      
+      Or use an image background:
+      background: url('your-image-link.jpg') no-repeat center center/cover;
+      */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      width: 320px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+      padding: 30px 20px 40px;
+      text-align: center;
+      position: relative;
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      background: var(--card-bg) no-repeat center center/cover;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid var(--primary-color);
+      object-fit: cover;
+      margin: 0 auto 20px;
+      animation: avatar-bounce 1.2s ease forwards;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes avatar-bounce {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 10;
+    }
+
+    .nickname {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--secondary-color);
+      margin: 0 0 25px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    button,
+    a.button-link {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      background: var(--primary-color);
+      box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+      transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      position: relative;
+    }
+
+    button:hover,
+    a.button-link:hover {
+      background-color: var(--secondary-color);
+      box-shadow: 0 8px 25px rgba(102, 187, 106, 0.6);
+    }
+
+    /* Facebook icon */
+    .fab {
+      font-family: "Font Awesome 5 Brands";
+      font-weight: 900;
+      font-style: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      color: inherit;
+      font-size: 1.2em;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover .fab,
+    a.button-link:hover .fab {
+      transform: scale(1.2);
+    }
+
+    /* Tooltip for copy confirmation */
+    .tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--secondary-color);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    .tooltip.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="background-container">
+    <div class="profile-card" role="region" aria-label="Profile Card">
+      <img
+        src="thanh.jpg"
+        alt="Profile Avatar"
+        class="avatar"
+        loading="lazy"
+      />
+      <h1 class="name">Nguyễn Ngọc Thành</h1>
+      <p class="nickname">MerzyThanh</p>
+      <div class="buttons">
+        <a
+          href="https://www.facebook.com/nguyen.ngoc.thanh.118686?locale=vi_VN"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button-link"
+          aria-label="Visit Facebook Profile"
+          title="Facebook Profile"
+        >
+          <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+        </a>
+        <button
+          id="copyButton"
+          aria-label="Copy contact number 0938825622"
+          title="Copy contact number"
+        >
+          <i class="fas fa-phone-alt" aria-hidden="true"></i> Liên hệ
+          <span class="tooltip" id="tooltip">Copied!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const copyButton = document.getElementById('copyButton');
+    const tooltip = document.getElementById('tooltip');
+    const phoneNumber = '0938825622';
+
+    copyButton.addEventListener('click', () => {
+      navigator.clipboard.writeText(phoneNumber).then(() => {
+        tooltip.classList.add('show');
+        setTimeout(() => {
+          tooltip.classList.remove('show');
+        }, 1500);
+      }).catch(() => {
+        alert('Failed to copy the number. Please copy manually: ' + phoneNumber);
+      });
+    });
+  </script>
+</body>
+</html>
